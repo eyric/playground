@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOG_DIR" value="${EM_APP_HOME:-.}/log"/>
+    <property name="MODULE_NAME" value="playground"/>
+    <property name="PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.fff} [%thread] [%X{reqid}] [%X{ip}] %-5level %logger{5}: %msg%n"/>
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <appender name="warnLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-warn.log</file>
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-warn.log.%d{yyyyMMdd.HH}.%i</fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="errorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-error.log</file>
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-error.log.%d{yyyyMMdd.HH}.%i
+            </fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--invoke日志-->
+    <appender name="invokeLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-invoke.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-invoke.log.%d{yyyyMMdd.HH}.%i
+            </fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--biz日志-->
+    <appender name="handleLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-handle.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-handle.log.%d{yyyyMMdd.HH}.%i
+            </fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--sal日志-->
+    <appender name="salLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-sal.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-sal.log.%d{yyyyMMdd.HH}.%i</fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--Spring内部日志-->
+    <appender name="springLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-spring.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-spring.log.%d{yyyyMMdd.HH}.%i
+            </fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--HTTP 日志-->
+    <appender name="httpLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-http.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-http.log.%d{yyyyMMdd.HH}.%i</fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--task日志-->
+    <appender name="taskLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-task.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-task.log.%d{yyyyMMdd.HH}.%i
+            </fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--sql 日志-->
+    <appender name="sqlLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-sql.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-sql.log.%d{yyyyMMdd.HH}.%i</fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--redis 日志-->
+    <appender name="redisLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-redis.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-redis.log.%d{yyyyMMdd.HH}.%i
+            </fileNamePattern>
+            <maxHistory>168</maxHistory>
+            <maxFileSize>200MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--service 日志-->
+    <appender name="serviceLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${MODULE_NAME}-service.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMMdd,aux}/${MODULE_NAME}-service.log.%d{yyyyMMdd}.log
+            </fileNamePattern>
+            <MaxHistory>2</MaxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <OnMismatch>NEUTRAL</OnMismatch>
+        </filter>
+    </appender>
+
+    <!--service 日志-->
+    <logger name="org.example.biz.service" level="INFO" additivity="false">
+        <appender-ref ref="serviceLog"/>
+        <appender-ref ref="errorLog"/>
+        <appender-ref ref="warnLog"/>
+    </logger>
+
+
+    <!--invoke 日志-->
+    <logger name="org.example.app.interceptor.InvokeInterceptor" level="INFO" additivity="false">
+        <appender-ref ref="invokeLog"/>
+        <appender-ref ref="errorLog"/>
+        <appender-ref ref="warnLog"/>
+    </logger>
+
+
+    <!--biz日志-->
+    <logger name="com.baidu.cpd.penguin.biz.handle" level="INFO" additivity="false">
+        <appender-ref ref="handleLog"/>
+        <appender-ref ref="errorLog"/>
+        <appender-ref ref="warnLog"/>
+    </logger>
+
+    <!--spring日志-->
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="springLog"/>
+        <appender-ref ref="errorLog"/>
+        <appender-ref ref="warnLog"/>
+    </logger>
+
+    <!--sql日志-->
+    <logger name="org.example.dal.config.PerformanceInterceptor" level="INFO" additivity="false">
+        <appender-ref ref="sqlLog"/>
+        <appender-ref ref="errorLog"/>
+    </logger>
+
+    <!--task日志-->
+    <logger name="org.example.task" level="INFO" additivity="false">
+        <appender-ref ref="taskLog"/>
+        <appender-ref ref="errorLog"/>
+        <appender-ref ref="warnLog"/>
+    </logger>
+
+    <!--console日志-->
+    <root level="INFO">
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="errorLog"/>
+        <appender-ref ref="warnLog"/>
+    </root>
+
+</configuration>

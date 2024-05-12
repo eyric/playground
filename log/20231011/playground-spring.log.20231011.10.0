@@ -1,0 +1,3 @@
+2023-10-11 10:58:43,250 [main] [] [] INFO  o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port(s): 8080 (http)
+2023-10-11 10:58:43,288 [main] [] [] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 486 ms
+2023-10-11 10:58:43,538 [main] [] [] INFO  o.s.b.w.e.t.TomcatWebServer: Tomcat started on port(s): 8080 (http) with context path ''

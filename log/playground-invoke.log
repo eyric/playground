@@ -1,0 +1,1 @@
+2023-10-11 11:35:37,864 [http-nio-8080-exec-2] [a879bf3c-7872-4c62-b037-0bb8c3263357] [127.0.0.1] INFO  o.e.a.i.InvokeInterceptor: method:test	params:	response:{"data":true,"status":200}	startTime:1696995337621	endTime:1696995337863	using:242ms	status:200	url:/test
